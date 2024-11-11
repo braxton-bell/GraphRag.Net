@@ -1,0 +1,89 @@
+﻿@namespace GraphRag.Net.Web.Pages.Demo
+@page "/Graph"
+
+<div id="app">
+    <div style="height:calc(100vh - 30px);width:100%;border:#eeeeee solid 1px;">
+        <relation-graph ref="seeksRelationGraph" :options="graphOptions" />
+    </div>
+</div>
+
+<script>
+    window.onload = function () {
+        initializeVueApp();
+    };
+    function initializeVueApp() {
+        let app = new Vue({
+            el: '#app',
+            data: {
+                message: 'Hello Vue!',
+                graphOptions: {
+                    defaultJunctionPoint: 'border'
+                    // You can refer to the parameters in "Graph" here for settings
+                }
+            },
+            mounted() {
+                this.showRelationGraph();
+            },
+            methods: {
+                showRelationGraph() {
+
+                    debugger;
+                    console.log('ref:btn:', this.$refs.btn);
+                    console.log('ref:', this.$refs.seeksRelationGraph);
+                    const url = new URL(window.location.href);
+
+                    // Get the query string part
+                    const queryString = url.search;
+
+                    // Parse the query string into a URLSearchParams object
+                    const urlParams = new URLSearchParams(queryString);
+
+                    // Get the parameter value, for example, 'index'
+                    const index = urlParams.get('index');
+                    fetch('/api/GraphDemo/GetAllGraphs?index=' + index)
+                        .then(response => {
+                            if (!response.ok) {
+                                throw new Error('Network response was not successful, status code: ' + response.status);
+                            }
+                            return response.json(); // Or response.json() depending on your response content type
+                        })
+                        .then(data => {
+                            // Request was successful, process response data
+                            console.log(data);
+                            this.$refs.seeksRelationGraph.setJsonData(data, (seeksRGGraph) => {
+                                // Code to execute after the graph is initialized
+                            });
+                        })
+                        .catch(error => {
+                            // Handle error
+                            console.error('Request error:', error);
+                        });
+                }
+            }
+        })
+    }
+</script>
+
+@code
+{
+    [Inject]
+    protected IJSRuntime _jsRuntime { get; set; }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            // Ensure all scripts are loaded before calling the JavaScript function to initialize Vue
+            await Task.Delay(500); // Brief delay
+
+            try
+            {
+                await _jsRuntime.InvokeVoidAsync("initializeVueApp");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
+    }
+}

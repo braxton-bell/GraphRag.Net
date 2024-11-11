@@ -1,0 +1,36 @@
+﻿@namespace GraphRag.Net.Web
+@using OneOf
+@inherits LayoutComponentBase
+
+<div class="container__b__0">
+    <div class="lang">
+        <!--todo: selectLang-->
+    </div>
+    <div class="content">
+        <div class="top">
+            <div class="header">
+                <a>
+                    <img alt="logo" class="logo" src="assets/logo.svg" />
+                    <span class="title">GraphRag.Net.Web</span>
+                </a>
+            </div>
+            <div class="desc">GraphRag.Net.Web</div>
+        </div>
+        @Body
+    </div>
+    <FooterView Copyright="2024 2024 GraphRag.Net" Links="Links"></FooterView>
+</div>
+
+@code
+{
+    public LinkItem[] Links { get; set; } =
+    {
+        new LinkItem
+        {
+            Key = "GraphRag.Net",
+            Title = "GraphRag.Net",
+            Href = "https://github.com/xuzeyu91/GraphRag.Net",
+            BlankTarget = true,
+        }
+    };
+}

@@ -1,0 +1,54 @@
+﻿@namespace GraphRag.Net.Web.Pages.Graph
+@page "/Chat"
+@using GraphRag.Net.Domain.Interface
+
+<GridContent>
+    <Row Gutter="24">
+        <Col Lg="7" Md="24">
+        <Spin Spinning=@loadding>
+            <label>Search Graph Content</label>
+            <Select TItem="string"
+                    TItemValue="string"
+                    ValueProperty="c=>c"
+                    LabelProperty="c=>c"
+                    DataSource="@_indexList"
+                    @bind-Value="@_index"
+                    Placeholder="Select Index"
+                    OnSelectedItemChanged="OnSelectedItemChangedHandler">
+            </Select>
+            <Input @bind-Value="_input" Style="margin-top:10px;" Placeholder="Question" />
+            <TextArea @bind-Value="_output" Style="margin-top:10px;" MinRows="8" Placeholder="Answer" />
+            <Button Type="@ButtonType.Primary" Style="margin-top:10px;" OnClick="Search">Node Search</Button>
+            <Button Type="@ButtonType.Primary" Style="margin-top:10px;" OnClick="Search1">Community Search</Button>
+            <a href="/graph?index=@_index" target="_blank" style="margin-left:10px;">View Graph</a>
+        </Spin>
+        </Col>
+        <Col Lg="7" Md="24">
+        <label>Import Text Data</label>
+        <Input @bind-Value="_importIndex" Placeholder="Index name; can be unique to one file or shared among multiple files" />
+        <TextArea @bind-Value="_importText" Style="margin-top:10px;" MinRows="8" Placeholder="Enter text for import" />
+        <Button Type="@ButtonType.Primary" Style="margin-top:10px;" OnClick="InputText">Import</Button>
+
+        </Col>
+
+        <Col Lg="10" Md="24">
+        <label>Import TXT Data</label>
+        <Input @bind-Value="_importIndex" Placeholder="Index name; can be unique to one file or shared among multiple files" />
+
+        <Upload Action="@("api/GraphDemo/ImportTxt?index="+_importIndex)"
+                Name="file"
+                Accept="text/plain"
+                BeforeUpload="BeforeUpload"
+                OnSingleCompleted="OnSingleCompleted" Style="margin-top:10px;">
+            <Button Icon="upload" Style="margin-top:10px;">
+                <span>Upload Document</span>
+            </Button>
+        </Upload>
+        </Col>
+    </Row>
+</GridContent>
+@code {
+
+
+}
+
