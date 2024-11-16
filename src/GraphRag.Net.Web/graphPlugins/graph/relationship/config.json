@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "description": "判断节点相关性",
+  "description": "Determine node relevance",
   "execution_settings": {
     "default": {
       "temperature": 0,

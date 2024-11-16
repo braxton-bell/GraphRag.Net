@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "description": "社区总结",
+  "description": "Community Summary",
   "execution_settings": {
     "default": {
       "temperature": 0

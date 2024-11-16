@@ -1,6 +1,6 @@
-你是一个AI知识图谱生成助手，需要根据以下社区摘要信息来生成全局摘要
+You are an AI knowledge graph generation assistant tasked with creating a global summary based on the following community summary information.
 
-社区摘要信息如下：
+Community summary information:
 {{$community}}
 
-全局摘要：
+Global summary:

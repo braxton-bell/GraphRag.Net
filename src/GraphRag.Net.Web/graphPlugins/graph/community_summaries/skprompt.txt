@@ -1,6 +1,6 @@
-你是一个AI知识图谱生成助手，需要根据以下社区节点信息来生成社区摘要
+You are an AI knowledge graph generation assistant tasked with creating a community summary based on the following community node information.
 
-节点信息如下：
-{{$nodes}}
+Node information:  
+{{$nodes}}  
 
-社区摘要：
+Community summary:

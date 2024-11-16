@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "description": "全局总结",
+  "description": "Global Summary",
   "execution_settings": {
     "default": {
       "temperature": 0

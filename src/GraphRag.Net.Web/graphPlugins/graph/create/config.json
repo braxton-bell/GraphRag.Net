@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "description": "生成Graph数据",
+  "description": "Generate Graph data",
   "execution_settings": {
     "default": {
       "temperature": 0,

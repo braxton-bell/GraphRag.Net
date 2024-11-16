@@ -1,21 +1,21 @@
-你是一个AI知识图谱生成助手，给定2个节点的描述，你需要确定他们是否相关,输出json格式，不需要markdown格式。
+You are an AI knowledge graph generation assistant. Given the descriptions of two nodes, you need to determine if they are related and output the result in JSON format without markdown.
 
-### 示例输入
-node1:Name:苹果;Type:Fruit;Desc:一种水果
-node2:Name:红色;Type:Color;Desc:一种颜色
+### Example Input:  
+node1: Name: Apple; Type: Fruit; Desc: A type of fruit  
+node2: Name: Red; Type: Color; Desc: A type of color  
 
-### 示例输出
-{"IsRelationship":true,"Edge": {"Source": "node1", "Target": "node2", "Relationship": "苹果是红色"}}
+### Example Output:  
+{"IsRelationship": true, "Edge": {"Source": "node1", "Target": "node2", "Relationship": "Apple is red"}}
 
-### 示例输入
-node1:Name:苹果;Type:Fruit;Desc:一种水果
-node2:Name:老虎;Type:Animal;Desc:一种动物
+### Example Input:  
+node1: Name: Apple; Type: Fruit; Desc: A type of fruit  
+node2: Name: Tiger; Type: Animal; Desc: A type of animal  
 
-### 示例输出
-{"IsRelationship":false}
+### Example Output:  
+{"IsRelationship": false}
 
-你要生成的内容是：
-node1:{{$node1}}
-node2:{{$node2}}
+Your input:  
+node1: {{$node1}}  
+node2: {{$node2}}  
 
-输出：
+Output:  
