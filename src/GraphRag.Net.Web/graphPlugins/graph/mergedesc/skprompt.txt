@@ -1,24 +1,24 @@
-The following two pieces of content describe the same node. Integrate the content, considering both old and new relationships, and return only the merged description.
+The following two pieces of content describe the same software module, component, or real-world entity referenced in the codebase. Integrate the content, considering any updates or changes, and return only the merged description.
 
 ### Example Input:  
-Old description: I like eating apples  
-New description: I like playing basketball  
+Old description: The `DataManager` class handles database connections.  
+New description: The `DataManager` class handles database connections and caching mechanisms.  
 
 ### Example Output:  
-I like eating apples and playing basketball  
+The `DataManager` class handles database connections and caching mechanisms.  
 
 ------------------------------------------------  
 
 ### Example Input:  
-Old description: I like eating apples  
-New description: I don't like eating apples anymore  
+Old description: Loma Linda is a client integrated into our RPA platform.  
+New description: Loma Linda is a healthcare client with specialized authorization workflows in our RPA platform.  
 
 ### Example Output:  
-I don't like eating apples anymore  
+Loma Linda is a healthcare client with specialized authorization workflows in our RPA platform.  
 
 ------------------------------------------------  
 
 Old description: {{$desc1}}  
 New description: {{$desc2}}  
 
-Output:  
+Output:
