@@ -27,27 +27,33 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c => {
     c.SwaggerDoc("v1", new() { Title = "GraphRag.Net.Api", Version = "v1" });
-    //添加Api层注释（true表示显示控制器注释）
+    // Add API layer comments (true indicates controller comments will be displayed)
     var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
     var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
     c.IncludeXmlComments(xmlPath, true);
 });
 
+// Add User Secrets
+if (builder.Environment.IsDevelopment())
+{
+    builder.Configuration.AddUserSecrets<Program>();
+}
+
 builder.Configuration.GetSection("GraphOpenAI").Get<GraphOpenAIOption>();
 builder.Configuration.GetSection("TextChunker").Get<TextChunkerOption>();
 builder.Configuration.GetSection("GraphSearch").Get<GraphSearchOption>();
-//builder.Configuration.GetSection("GraphDBConnection").Get<GraphDBConnectionOption>();
+// builder.Configuration.GetSection("GraphDBConnection").Get<GraphDBConnectionOption>();
 
 builder.Services.AddGraphRagNet();
 
-////自定义Kernel 可以实现其他模型的对接实现
-//var kernelBuild = Kernel.CreateBuilder();
-//kernelBuild.Services.AddKeyedSingleton<ITextGenerationService>("mock-text", new MockTextCompletion());
-//kernelBuild.Services.AddKeyedSingleton<IChatCompletionService>("mock-chat", new MockChatCompletion());
-//kernelBuild.Services.AddSingleton((ITextEmbeddingGenerationService)new MockTextEmbeddingGeneratorService());
-//kernelBuild.Services.AddKeyedSingleton("mock-embedding", new MockTextEmbeddingGeneratorService());
+//// Custom Kernel: Can connect to other models
+// var kernelBuild = Kernel.CreateBuilder();
+// kernelBuild.Services.AddKeyedSingleton<ITextGenerationService>("mock-text", new MockTextCompletion());
+// kernelBuild.Services.AddKeyedSingleton<IChatCompletionService>("mock-chat", new MockChatCompletion());
+// kernelBuild.Services.AddSingleton((ITextEmbeddingGenerationService)new MockTextEmbeddingGeneratorService());
+// kernelBuild.Services.AddKeyedSingleton("mock-embedding", new MockTextEmbeddingGeneratorService());
 
-//builder.Services.AddGraphRagNet(kernelBuild.Build());
+// builder.Services.AddGraphRagNet(kernelBuild.Build());
 
 
 var app = builder.Build();
