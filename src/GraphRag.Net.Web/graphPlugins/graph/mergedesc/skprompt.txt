@@ -1,24 +1,31 @@
-The following two pieces of content describe the same software module, component, or real-world entity referenced in the codebase. Integrate the content, considering any updates or changes, and return only the merged description.
+The following two pieces of content describe the same code module in our Clinical Revenue Cycle Management (RCM) automation repository. Integrate the content, considering both old and new relationships, and extract the following information:
 
-### Example Input:  
-Old description: The `DataManager` class handles database connections.  
-New description: The `DataManager` class handles database connections and caching mechanisms.  
+- Module Identification:
+  - Source code path
+  - Full namespace
 
-### Example Output:  
-The `DataManager` class handles database connections and caching mechanisms.  
+- Overall Purpose: Describe the module's role in automating RCM tasks through Robotic Process Automation (RPA).
 
-------------------------------------------------  
+- Services Provided: Outline the services the module offers within the overall repository.
 
-### Example Input:  
-Old description: Loma Linda is a client integrated into our RPA platform.  
-New description: Loma Linda is a healthcare client with specialized authorization workflows in our RPA platform.  
+- Relationships with Other Modules: Reference other modules by their respective full path and/or full namespace.
 
-### Example Output:  
-Loma Linda is a healthcare client with specialized authorization workflows in our RPA platform.  
+Return only the merged description.
 
-------------------------------------------------  
+### Example Input:
 
-Old description: {{$desc1}}  
-New description: {{$desc2}}  
+Old description: Module A handles data extraction.
+
+New description: Module A now also handles data transformation.
+
+### Example Output:
+
+Module A (`src/path/to/module_a.py`, namespace `package.module_a`) handles data extraction and transformation as part of automating RCM tasks through RPA. It provides services related to data processing and interacts with Module B (`src/path/to/module_b.py`, namespace `package.module_b`).
+
+------------------------------------------------
+
+Old description: {{$desc1}}
+
+New description: {{$desc2}}
 
 Output:

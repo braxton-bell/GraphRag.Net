@@ -1,21 +1,23 @@
-You are an AI code analysis assistant specializing in software development knowledge graphs. Given the descriptions of two software components, modules, or related entities, determine if they are related and output the result in JSON format without markdown.
+You are an AI knowledge graph generation assistant specialized in code repositories for automating Clinical Revenue Cycle Management (RCM) tasks through Robotic Process Automation (RPA). Given the descriptions of two code modules, you need to determine if they are related and output the result in JSON format without markdown.
 
-### Example Input:
-component1: Name: `performer.py`; Type: Module; Desc: Manages automation of authorization tasks for the Loma Linda workflow.
-component2: Name: `Loma Linda`; Type: Client; Desc: A healthcare client involved in authorization management.
+Note: In the output, always use the full namespace notation for node names in the relationship.
 
-### Example Output:
-{"IsRelationship": true, "Edge": {"Source": "component1", "Target": "component2", "Relationship": "`performer.py` is used for automating tasks for `Loma Linda`"}}
+### Example Input:  
+node1: Name: `read_epic_referral_details.py`; File Path: `src/drivers/loma_linda/authorization/read/read_epic_referral_details.py`; Namespace: `drivers.loma_linda.authorization.read.read_epic_referral_details`; Purpose: Extracts and processes patient referral details from the Epic System's referral page; Services: Data extraction and processing for patient referrals; Dependencies: `models.base_models.Name`, `models.loma_linda.authorization_models.PatientReferral`, `models.scene.SceneManager`, `scenes.loma_linda.authorization.locators.Referral`, `utilities.logger.JorieLogger`  
+node2: Name: `SceneManager`; File Path: `src/models/scene.py`; Namespace: `models.scene.SceneManager`; Purpose: Manages scene interactions within the application; Services: Provides context management for scene interactions; Dependencies: None  
 
-### Example Input:
-component1: Name: `cv.py`; Type: Module; Desc: Contains functions for computer vision activities that are reusable.
-component2: Name: `browser.py`; Type: Module; Desc: Contains functions for common browser automation tasks that are reusable.
+### Example Output:  
+{"IsRelationship": true, "Edge": {"Source": "node1", "Target": "node2", "Relationship": "drivers.loma_linda.authorization.read.read_epic_referral_details depends on models.scene.SceneManager"}}
 
-### Example Output:
+### Example Input:  
+node1: Name: `read_epic_referral_details.py`; File Path: `src/drivers/loma_linda/authorization/read/read_epic_referral_details.py`; Namespace: `drivers.loma_linda.authorization.read.read_epic_referral_details`; Purpose: Extracts and processes patient referral details from the Epic System's referral page; Services: Data extraction and processing for patient referrals; Dependencies: `models.base_models.Name`, `models.loma_linda.authorization_models.PatientReferral`, `models.scene.SceneManager`, `scenes.loma_linda.authorization.locators.Referral`, `utilities.logger.JorieLogger`  
+node2: Name: `OpenCVModule`; File Path: `src/utilities/opencv_module.py`; Namespace: `utilities.opencv_module`; Purpose: Provides image processing capabilities using OpenCV; Services: Image recognition and processing functions; Dependencies: None  
+
+### Example Output:  
 {"IsRelationship": false}
 
-Your input:
-component1: {{$component1}}
-component2: {{$component2}}
+Your input:  
+node1: {{$node1}}  
+node2: {{$node2}}  
 
 Output:
